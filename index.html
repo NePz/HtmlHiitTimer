@@ -5,8 +5,15 @@
   <title>Tabata Timer</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="light-mode">
   <div class="container">
+    <div class="theme-toggle">
+      <label class="switch">
+        <input type="checkbox" id="themeToggle" onclick="toggleTheme()">
+        <span class="slider round"></span>
+      </label>
+      <span id="themeText">Light Mode</span>
+    </div>
 
     <div class="timer">
       <h1 id="timer">00:00</h1>
@@ -17,33 +24,32 @@
         <button onclick="resetTimer()">Reset</button>
       </div>
     </div>
-
+    
     <button id="toggleSettings" onclick="toggleSettings()">Show/Hide Settings</button>
 
     <div id="settingsPanel" class="settings" style="display: none;">
       <h2>Timer Settings</h2>
       <div class="setting">
         <label for="prepTime">Preparation Time (sec):</label>
-        <input type="number" id="prepTime" value="5">
+        <input type="number" id="prepTime" value="1">
       </div>
       <div class="setting">
         <label for="workTime">Work Time (sec):</label>
-        <input type="number" id="workTime" value="20">
+        <input type="number" id="workTime" value="1">
       </div>
       <div class="setting">
         <label for="restTime">Rest Time (sec):</label>
-        <input type="number" id="restTime" value="10">
+        <input type="number" id="restTime" value="1">
       </div>
       <div class="setting">
         <label for="rounds">Number of Rounds:</label>
-        <input type="number" id="rounds" value="4">
+        <input type="number" id="rounds" value="1">
       </div>
       <button onclick="updateSettings()">Update Settings</button>
     </div>
-    
-  </div>
 
   
+  </div>
 
   <script src="script.js"></script>
 </body>

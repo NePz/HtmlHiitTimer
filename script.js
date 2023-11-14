@@ -37,17 +37,25 @@ function switchMode() {
     case 'Prep':
       mode = 'Work';
       duration = document.getElementById('workTime').value;
+      console.log("work");
       break;
     case 'Work':
       mode = 'Rest';
       duration = document.getElementById('restTime').value;
+      console.log("rest");
       break;
     case 'Rest':
       mode = 'Work';
       duration = document.getElementById('workTime').value;
+      if (roundsRemaining <= 0) {
+        resetTimer(); // Call resetTimer() when roundsRemaining is 0 or negative
+        mode = 'Complete'
+      } else {
       roundsRemaining--;
+      }
+      console.log("work");
       break;
-    default:
+    default: 
       if (roundsRemaining > 0) {
         mode = 'Prep';
         duration = document.getElementById('prepTime').value;
@@ -55,6 +63,7 @@ function switchMode() {
         clearInterval(intervalId);
         isActive = false;
       }
+
   }
 }
 
@@ -74,19 +83,37 @@ function updateSettings() {
   updateDisplay();
 }
 
-function toggleSettings() {
-    const settingsPanel = document.getElementById('settingsPanel');
-    if (settingsPanel.style.display === 'none') {
-      settingsPanel.style.display = 'block';
-    } else {
-      settingsPanel.style.display = 'none';
-    }
-  }
-  
-
 window.onload = () => {
   duration = document.getElementById('prepTime').value;
   mode = 'Prep';
   roundsRemaining = document.getElementById('rounds').value;
   updateDisplay();
 };
+
+//! THEMES
+
+function toggleSettings() {
+  const settingsPanel = document.getElementById('settingsPanel');
+  if (settingsPanel.style.display === 'none') {
+    settingsPanel.style.display = 'block';
+  } else {
+    settingsPanel.style.display = 'none';
+  }
+}
+
+// Update toggleTheme() function to manage settings panel visibility
+function toggleTheme() {
+  const body = document.body;
+  const themeText = document.getElementById('themeText');
+  const settingsPanel = document.getElementById('settingsPanel');
+
+  body.classList.toggle('dark-mode');
+
+  if (body.classList.contains('dark-mode')) {
+    themeText.textContent = 'Dark Mode';
+    settingsPanel.classList.add('dark-mode');
+  } else {
+    themeText.textContent = 'Light Mode';
+    settingsPanel.classList.remove('dark-mode');
+  }
+}
