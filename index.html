@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tabata Timer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+
+    <div class="timer">
+      <h1 id="timer">00:00</h1>
+      <p id="mode"></p>
+      <p id="roundsRemaining"></p>
+      <div class="controls">
+        <button onclick="startTimer()">Start/Pause</button>
+        <button onclick="resetTimer()">Reset</button>
+      </div>
+    </div>
+
+    <button id="toggleSettings" onclick="toggleSettings()">Show/Hide Settings</button>
+
+    <div id="settingsPanel" class="settings" style="display: none;">
+      <h2>Timer Settings</h2>
+      <div class="setting">
+        <label for="prepTime">Preparation Time (sec):</label>
+        <input type="number" id="prepTime" value="5">
+      </div>
+      <div class="setting">
+        <label for="workTime">Work Time (sec):</label>
+        <input type="number" id="workTime" value="20">
+      </div>
+      <div class="setting">
+        <label for="restTime">Rest Time (sec):</label>
+        <input type="number" id="restTime" value="10">
+      </div>
+      <div class="setting">
+        <label for="rounds">Number of Rounds:</label>
+        <input type="number" id="rounds" value="4">
+      </div>
+      <button onclick="updateSettings()">Update Settings</button>
+    </div>
+    
+  </div>
+
+  
+
+  <script src="script.js"></script>
+</body>
+</html>
