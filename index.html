@@ -18,22 +18,13 @@
       <span id="themeText">Light Mode</span>
     </div>
 
+
     <div class="timer">
       <b>
         <p id="mode"></p>
       </b>
       <b id="timer">00:00</b>
       <p id="roundsRemaining"></p>
-      <div class="controls">
-        <button onclick="startTimer()">Start/Pause</button>
-        <button id="reset-btn" onclick="resetTimer()">Reset</button>
-      </div>
-    </div>
-
-    <button id="toggleSettings" onclick="toggleSettings()">Show/Hide Settings</button>
-
-    <div id="settingsPanel" class="settings" style="display: block;">
-      <h2>Timer Settings</h2>
 
       <div class="sound-toggle">
         <label class="switch">
@@ -42,6 +33,19 @@
         </label>
         <span id="themeText">Sound</span>
       </div>
+
+      <div class="controls">
+        <button onclick="startTimer()">Start/Pause</button>
+        <button id="reset-btn" onclick="resetTimer()">Reset</button>
+      </div>
+
+    </div>
+
+    <button id="toggleSettings" onclick="toggleSettings()">Show/Hide Settings</button>
+
+
+    <div id="settingsPanel" class="settings" style="display: block;">
+      <h2>Timer Settings</h2>
 
       <br>
       <div class="setting">
