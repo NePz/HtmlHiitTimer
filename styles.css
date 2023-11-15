@@ -154,3 +154,22 @@ button {
 button:hover {
   background-color: #45a049;
 }
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .timer #timer {
+    font-size: 96px; /* Adjust font size for smaller screens */
+  }
+
+  .timer #mode {
+    font-size: 36px; /* Adjust font size for smaller screens */
+  }
+
+  .settings {
+    padding: 20px; /* Adjust padding for smaller screens */
+  }
+
+  input[type="number"] {
+    width: 160px; /* Adjust input width for smaller screens */
+  }
+}
