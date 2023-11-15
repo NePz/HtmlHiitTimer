@@ -5,7 +5,7 @@ let mode = '';
 let roundsRemaining = 0;
 let soundEnabled = false;
 let beepSound = new Audio('audio/475557__rannem__bip.mp3');
-let startBeep = new Audio('audio/455202__start_boop.mp3');
+let startBeep = new Audio('audio/680825_stomachache_countdown-start.mp3');
 let goVoice = new Audio('audio/180723__jerrarjombler__go2.mp3');
 let restVoice = new Audio('audio/108889__timkahn__rest.mp3');
 let pauseVoice = new Audio('audio/108895__timkahn__workout-paused.mp3')
@@ -45,30 +45,48 @@ function updateTimer() {
 
 function switchMode() {
   switch (mode) {
-    case 'Prep':
-      mode = 'Work';
+    case 'PREP':
+      mode = 'WORK';
       duration = document.getElementById('workTime').value;
       console.log("work");
+      if (roundsRemaining <= 0) {
+        resetTimer(); // Call resetTimer() when roundsRemaining is 0 or negative
+        mode = 'COMPLETE'
+        if (soundEnabled) {
+          completeVoice.playbackRate = 1.3;
+          completeVoice.play();
+        }
+      }
       if (soundEnabled) {
         goVoice.playbackRate = 1.1;
         goVoice.play();
       }
       break;
-    case 'Work':
-      mode = 'Rest';
+
+    case 'WORK':
+      mode = 'REST';
       duration = document.getElementById('restTime').value;
       console.log("rest");
+      if (roundsRemaining <= 1) {
+        resetTimer(); // Call resetTimer() when roundsRemaining is 0 or negative
+        mode = 'COMPLETE'
+        if (soundEnabled) {
+          completeVoice.playbackRate = 1.3;
+          completeVoice.play();
+          break;
+        }
+      }
       if (soundEnabled) {
         restVoice.playbackRate = 1.5;
         restVoice.play();
       }
       break;
-    case 'Rest':
-      mode = 'Work';
+    case 'REST':
+      mode = 'WORK';
       duration = document.getElementById('workTime').value;
-      if (roundsRemaining <= 0) {
+      if (roundsRemaining <= 1) {
         resetTimer(); // Call resetTimer() when roundsRemaining is 0 or negative
-        mode = 'Complete'
+        mode = 'COMPLETE'
         if (soundEnabled) {
           completeVoice.playbackRate = 1.3;
           completeVoice.play();
@@ -84,12 +102,13 @@ function switchMode() {
       break;
     default:
       if (roundsRemaining > 0) {
-        mode = 'Prep';
+        mode = 'PREP';
         duration = document.getElementById('prepTime').value;
       } else {
         clearInterval(intervalId);
         isActive = false;
       }
+
 
   }
 }
@@ -100,7 +119,7 @@ function updateDisplay() {
   const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
   document.getElementById('timer').textContent = formattedTime;
   document.getElementById('mode').textContent = mode;
-  document.getElementById('roundsRemaining').textContent = `Rounds remaining: ${roundsRemaining}`;
+  document.getElementById('roundsRemaining').textContent = `ROUNDS LEFT: ${roundsRemaining}`;
 }
 
 //! Beep Sound
@@ -120,14 +139,14 @@ function playBeep() {
 
 function updateSettings() {
   duration = document.getElementById('prepTime').value;
-  mode = 'Prep';
+  mode = 'PREP';
   roundsRemaining = document.getElementById('rounds').value;
   updateDisplay();
 }
 
 window.onload = () => {
   duration = document.getElementById('prepTime').value;
-  mode = 'Prep';
+  mode = 'PREP';
   roundsRemaining = document.getElementById('rounds').value;
   updateDisplay();
 };
