@@ -1,29 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Tabata Timer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Functional HiiT Timer</title>
   <link rel="stylesheet" href="styles.css">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1985024906108077"
      crossorigin="anonymous"></script>
 </head>
-<body>
+
+<body class="light-mode">
   <div class="container">
+    <div class="theme-toggle">
+      <label class="switch">
+        <input type="checkbox" id="themeToggle" onclick="toggleTheme()">
+        <span class="slider round"></span>
+      </label>
+      <span id="themeText">Light Mode</span>
+    </div>
+
 
     <div class="timer">
-      <h1 id="timer">00:00</h1>
-      <p id="mode"></p>
+      <b>
+        <p id="mode"></p>
+      </b>
+      <b id="timer">00:00</b>
       <p id="roundsRemaining"></p>
+
+      <div class="sound-toggle">
+        <label class="switch">
+          <input type="checkbox" id="themeToggle" onclick="toggleSound()">
+          <span class="slider round"></span>
+        </label>
+        <span id="themeText">Sound</span>
+      </div>
+
       <div class="controls">
         <button onclick="startTimer()">Start/Pause</button>
-        <button onclick="resetTimer()">Reset</button>
+        <button id="reset-btn" onclick="resetTimer()">Reset</button>
       </div>
+
     </div>
 
     <button id="toggleSettings" onclick="toggleSettings()">Settings (Show/Hide)</button>
 
-    <div id="settingsPanel" class="settings" style="display: none;">
+
+    <div id="settingsPanel" class="settings" style="display: block;">
       <h2>Timer Settings</h2>
+
+      <br>
       <div class="setting">
         <label for="prepTime">Preparation Time (sec):</label>
         <input type="number" id="prepTime" value="5">
@@ -37,15 +63,20 @@
         <input type="number" id="restTime" value="10">
       </div>
       <div class="setting">
-        <label for="rounds">Number of Rounds:</label>
-        <input type="number" id="rounds" value="4">
+        <label for="rounds"># of Rounds:</label>
+        <input type="number" id="rounds" value="5">
       </div>
-      <button onclick="updateSettings()">Update Settings</button>
-    </div>
-    
-  </div>
 
-  
+
+
+      <button onclick="updateSettings()">Apply</button>
+
+
+
+    </div>
+
+
+  </div>
 
   <script src="script.js"></script>
 
@@ -63,4 +94,5 @@
 </script>
   
 </body>
+
 </html>
